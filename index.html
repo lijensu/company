@@ -2,78 +2,131 @@
 <html>
 
   <head>
+    <title>公司大小事</title>
     <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Test : Region for tests" />
+    <script src="components/platform/platform.js"></script>
+    
+    <link rel="import" href="components/core-icon/core-icon.html">
+  <link rel="import" href="components/core-icons/core-icons.html">
+  <link rel="import" href="components/core-icons/iconsets/icons.html">
+  <link rel="import" href="components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="components/core-pages/core-pages.html">
+  <link rel="import" href="components/core-item/core-item.html">
+  <link rel="import" href="components/core-header-panel/core-header-panel.html">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="import" href="components/font-roboto/roboto.html">
 
-    <title>Test</title>
+  <link rel="import" href="components/paper-tabs/paper-tabs.html">
+  <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="components/paper-item/paper-item.html">
+  
+  <link rel="import" href="components/sortable-table/sortable-table.html">
+  
+  <link rel="import" href="components/polymer/polymer.html">
+  
+  <link rel="import" href="components/core-scaffold/core-scaffold.html">
+  <link rel="import" href="components/core-menu/core-menu.html">
+  <link rel="import" href="components/core-menu/core-submenu.html">
+  
+  <link rel="import" href="/components/paper-ripple/paper-ripple.html">
+  
+  <style shim-shadowdom>
+    body {
+      font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+      color: #333;
+      font-size: 14px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+    }
+    
+    paper-tabs, core-toolbar {
+      background-color: #00bcd4;
+      color: #fff;
+      box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    core-toolbar paper-tabs {
+      box-shadow: none;
+    }
+    
+    paper-tabs[noink][nobar] paper-tab.core-selected {
+      color: #ffff8d;
+    }
+    
+    paper-tabs.transparent-teal {
+      background-color: transparent;
+      color: #00bcd4;
+      box-shadow: none;
+    }
+    
+    paper-tabs.transparent-teal paper-tab::shadow #ink {
+      color: #00bcd4;
+    }
+    
+    core-item.core-selected {
+      color: red;
+    }
+    
+    core-submenu::shadow #submenu {
+      margin-left: 40px;
+    }
+    
+    /* Button */
+    .button {
+      display: inline-block;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      border-radius: 2px;
+      font-size: 1.6em;
+      background-color: #fff;
+      color: #646464;
+    }
+    .button.blue {
+      background-color: #4285f4;
+      color: #fff;
+    }
+    .center {
+      text-align: center;
+    }
+    .button.raised {
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    .button.raised:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+    }
+  </style>
   </head>
 
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/lijensu/test">View on GitHub</a>
-
-          <h1 id="project_title">Sonia專區啦!!</h1>
-          <h2 id="project_tagline">開源的就是誰想改就可以改!</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/lijensu/test/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/lijensu/test/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Test maintained by <a href="https://github.com/lijensu">lijensu</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+<body unresolved fullbleed layout vertical>
+  <core-scaffold id="scaffold">
+    <core-header-panel navigation flex mode="seamed">
+      <core-toolbar>
+      	123
+      </core-toolbar>
+    </core-header-panel>
+    <div tool>啦啦啦</div>
+    <core-pages selected="0">
+      <div>
+      	<core-item label="網站使用 Polymer + Java + MongoDB 建置．"></core-item>
+      	<core-item label="有事情可以寫信給我，下方有我的信箱連結．"></core-item>
+      </div>		
+	  </div>
+	  <div>
+	    Naruto...
+	  </div>
+	  <div>
+	    Hunter...
+	  </div>
+    </core-pages>
+  </core-scaffold>
+</body>
 </html>
