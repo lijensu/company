@@ -12,7 +12,5 @@
 >/images/ - all image files.  
 >/json/ - json files.(Write/Read data from here.)
 >
->待辦事項 :  
->1. Member資料增加．(member.json = name, deploy(-1,0,1,2,…) )  
->2. 部署清單(根據每個禮拜自動換下一位)．  
->3. 程式技巧專區(Tips, coding style, …)(JAVA, Javascript)．  
+>待辦事項 :   
+>* 程式技巧專區(Tips, coding style, …)(JAVA, Javascript)．  
