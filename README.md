@@ -5,12 +5,12 @@
 >Polymer + Json file(資料存放)．
 >
 >網站資料分類 : 
-> /index.html - home page.
-> /components/ - polymer’s files.
-> /css/ - css files.
-> /js/ - js files.
-> /images/ - all image files.
-> /json/ - json files.(Write/Read data from here.)
+> 1. /index.html - home page.
+> 2. /components/ - polymer’s files.
+> 3. /css/ - css files.
+> 4. /js/ - js files.
+> 5. /images/ - all image files.
+> 6. /json/ - json files.(Write/Read data from here.)
 >
 >待辦事項 : 
 >1. 
