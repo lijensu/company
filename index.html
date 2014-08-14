@@ -116,21 +116,40 @@
   <core-scaffold id="scaffold">
     <core-header-panel navigation flex mode="seamed">
       <core-toolbar>
-      	123
+      	ToolBar~
       </core-toolbar>
+      <core-menu selected="0" selectedindex="0">
+        <core-item icon="forward" label="1"></core-item>
+        <core-item icon="forward" label="2"></core-item>
+        <core-item icon="forward" label="3"></core-item>
+        <core-submenu icon="add" label="open">
+	      <core-item icon="forward" label="One"></core-item>
+	      <core-item icon="forward" label="Two"></core-item>
+	      <core-item icon="forward" label="Three"></core-item>
+	    </core-submenu>
+      </core-menu>
+      
+      
     </core-header-panel>
     <div id="toolBar" tool></div>
     <core-pages selected="0">
       <div>
-      	<core-item label="啦啦啦!"></core-item>
-      	<core-item label="嘿嘿嘿!"></core-item>
+      	<core-item label="這什麼怪東西1!"></core-item>
       </div>		
+      <div>
+      	<core-item label="這什麼怪東西2!"></core-item>
+      </div>
+      <div>
+      	<core-item label="這什麼怪東西3!"></core-item>
+      </div>
+	  <div>
+	    One...
 	  </div>
 	  <div>
-	    Naruto...
+	    Two...
 	  </div>
 	  <div>
-	    Hunter...
+	    Three...
 	  </div>
     </core-pages>
   </core-scaffold>
@@ -144,6 +163,21 @@
   var setting;
   var deployLoopCount = 0;
   window.addEventListener('polymer-ready', function(e) {
+    document.querySelector('core-menu').addEventListener('core-activate', function(e) {
+	  var menu = document.querySelector('core-menu');
+	  var submenu = menu.querySelector('core-submenu');
+	  var pages = document.querySelector('core-pages');
+	  var drawerPanel = document.querySelector('core-scaffold').shadowRoot.querySelector('#drawerPanel');
+		
+	  var selectedItem = menu.querySelector('core-item.core-selected');
+	  var menuItems = menu.querySelectorAll('core-item');
+	  var index = [].indexOf.call(menuItems, selectedItem);
+	  if(index >= 0){
+		pages.selected = index;
+		drawerPanel.closeDrawer();
+	  }
+	});
+  
     var memberAjax = document.querySelector('#memberAjax');
     var settingAjax = document.querySelector('#settingAjax');
     memberAjax.addEventListener('core-response', function(e) {
@@ -179,8 +213,8 @@
       }
       toolBar = document.querySelector('#toolBar');
       toolBar.innerHTML = '上週部版為 : '+deployMemberLast.name + ', '
-      + '本週部版為 : '+deployMember.name + ', '
-      + '下週部版為 : '+deployMemberNext.name;
+      + '本週部版為 : ' +deployMember.name + ', '
+      + '下週部版為 : ' +deployMemberNext.name;
     });
     settingAjax.addEventListener('core-response', function(e) {
       setting = e.detail.response;
