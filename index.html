@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>公司大小事</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta charset='utf-8' />
     <script src="components/platform/platform.js"></script>
     
     <link rel="import" href="components/core-icon/core-icon.html">
-  <link rel="import" href="components/core-icons/core-icons.html">
-  <link rel="import" href="components/core-icons/iconsets/icons.html">
-  <link rel="import" href="components/core-toolbar/core-toolbar.html">
-  <link rel="import" href="components/core-pages/core-pages.html">
-  <link rel="import" href="components/core-item/core-item.html">
-  <link rel="import" href="components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="components/core-icons/core-icons.html">
+    <link rel="import" href="components/core-icons/iconsets/icons.html">
+    <link rel="import" href="components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="components/core-pages/core-pages.html">
+    <link rel="import" href="components/core-item/core-item.html">
+    <link rel="import" href="components/core-header-panel/core-header-panel.html">
 
-  <link rel="import" href="components/font-roboto/roboto.html">
+    <link rel="import" href="components/font-roboto/roboto.html">
 
-  <link rel="import" href="components/paper-tabs/paper-tabs.html">
-  <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
-  <link rel="import" href="components/paper-item/paper-item.html">
+    <link rel="import" href="components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="components/paper-item/paper-item.html">
   
-  <link rel="import" href="components/sortable-table/sortable-table.html">
+    <link rel="import" href="components/sortable-table/sortable-table.html">
   
-  <link rel="import" href="components/polymer/polymer.html">
+    <link rel="import" href="components/polymer/polymer.html">
   
-  <link rel="import" href="components/core-scaffold/core-scaffold.html">
-  <link rel="import" href="components/core-menu/core-menu.html">
-  <link rel="import" href="components/core-menu/core-submenu.html">
+    <link rel="import" href="components/core-scaffold/core-scaffold.html">
+    <link rel="import" href="components/core-menu/core-menu.html">
+    <link rel="import" href="components/core-menu/core-submenu.html">
   
-  <link rel="import" href="components/paper-ripple/paper-ripple.html">
+    <link rel="import" href="components/paper-ripple/paper-ripple.html">
   
-  <link rel="import" href="components/core-ajax/core-ajax.html">
+    <link rel="import" href="components/core-ajax/core-ajax.html">
   
   <style shim-shadowdom>
     body {
@@ -106,10 +108,9 @@
       transition-delay: 0s;
     }
   </style>
-  </head>
+</head>
 
 <body unresolved fullbleed layout vertical>
-
   <core-ajax id="memberAjax" url="json/member.json" handleAs="json"></core-ajax>
   <core-ajax id="settingAjax" url="json/setting.json" handleAs="json"></core-ajax>
 
