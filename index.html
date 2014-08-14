@@ -28,7 +28,9 @@
   <link rel="import" href="components/core-menu/core-menu.html">
   <link rel="import" href="components/core-menu/core-submenu.html">
   
-  <link rel="import" href="/components/paper-ripple/paper-ripple.html">
+  <link rel="import" href="components/paper-ripple/paper-ripple.html">
+  
+  <link rel="import" href="components/core-ajax/core-ajax.html">
   
   <style shim-shadowdom>
     body {
@@ -107,17 +109,21 @@
   </head>
 
 <body unresolved fullbleed layout vertical>
+
+  <core-ajax id="memberAjax" url="json/member.json" handleAs="json"></core-ajax>
+  <core-ajax id="settingAjax" url="json/setting.json" handleAs="json"></core-ajax>
+
   <core-scaffold id="scaffold">
     <core-header-panel navigation flex mode="seamed">
       <core-toolbar>
       	123
       </core-toolbar>
     </core-header-panel>
-    <div tool>啦啦啦</div>
+    <div id="toolBar" tool></div>
     <core-pages selected="0">
       <div>
-      	<core-item label="網站使用 Polymer + Java + MongoDB 建置．"></core-item>
-      	<core-item label="有事情可以寫信給我，下方有我的信箱連結．"></core-item>
+      	<core-item label="啦啦啦!"></core-item>
+      	<core-item label="嘿嘿嘿!"></core-item>
       </div>		
 	  </div>
 	  <div>
@@ -129,4 +135,58 @@
     </core-pages>
   </core-scaffold>
 </body>
+
+<script>
+  var deployMember;
+  var deployMemberLast;
+  var deployMemberNext;
+  var members;
+  var setting;
+  var deployLoopCount = 0;
+  window.addEventListener('polymer-ready', function(e) {
+    var memberAjax = document.querySelector('#memberAjax');
+    var settingAjax = document.querySelector('#settingAjax');
+    memberAjax.addEventListener('core-response', function(e) {
+      members = e.detail.response;
+      for (var i = 0; i < members.length; i++) {
+        var member = members[i];
+        if(member.deploy != -1){
+          deployLoopCount++;
+        }
+      }
+      var date1 = new Date(2014,7,10);
+      //var date2 = new Date(2014,7,25);
+      var date2 = new Date();
+      var tmp = date2.getTime()-date1.getTime();
+      var day = Math.floor(tmp/1000/60/60/24);
+      var shiftNumer = Math.floor((day-1)/7);
+      var memberIndex = (setting.deploy+shiftNumer)%deployLoopCount;
+      for (var i = 0; i < members.length; i++) {
+        var member = members[i];
+        if(member.deploy == memberIndex){
+          deployMember = member;
+  	      if(memberIndex == 0){
+  	        deployMemberLast = members[deployLoopCount-1];
+  	      }else{
+  	        deployMemberLast = members[memberIndex-1];
+  	      }
+  	      if(memberIndex == (deployLoopCount-1)){
+  	        deployMemberNext = members[0];
+  	      }else{
+  	        deployMemberNext = members[memberIndex+1];
+  	      }
+        }
+      }
+      toolBar = document.querySelector('#toolBar');
+      toolBar.innerHTML = '上週部版為 : '+deployMemberLast.name + ', '
+      + '本週部版為 : '+deployMember.name + ', '
+      + '下週部版為 : '+deployMemberNext.name;
+    });
+    settingAjax.addEventListener('core-response', function(e) {
+      setting = e.detail.response;
+      memberAjax.go(); 
+    });
+    settingAjax.go(); 
+  });
+</script>
 </html>
